@@ -68,14 +68,5 @@ def form2_result():
     
     return render_template('form2_result.html', plot_1 = fig_1.to_html(full_html=False), plot_2 = fig_2.to_html(full_html = False), plot_3 = fig_3.to_html(full_html = False))
 
-
-@app.route('/form3',methods=['POST'])
-def form3_result():
-    attribute = request.form['attribute']
-    fig = px.bar(df, x='tid', y=attribute, color='cid',
-             labels={'tid': 'Team ID', attribute : attribute},
-             title=f'Stacked Bar Chart - {attribute} per Team per Coach')
-
-    return render_template('form3_result.html', plot = fig.to_html(full_html=False))
 if __name__ == '__main__':
     app.run(debug=True)
