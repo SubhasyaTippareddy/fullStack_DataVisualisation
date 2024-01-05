@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Form 1{% endblock %}
+
+{% block content %}
+<form action="{{ url_for('form1_result') }}" method="post" id="form1">
+    <h2>Coach Statistics for different years and attributes</h2>
+    <h3>Select Year and Attribute</h3>
+    <label for="year">Year:</label>
+    <select id="year" name="year" required>
+        {% for y in years %}
+        <option value="{{ y }}">{{ y }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="attribute">Attribute:</label>
+    <select id="attribute" name="attribute" required>
+        <option value="season_win"> season_win</option>
+        <option value="season_loss"> season_loss</option>
+        <option value="playoff_win"> playoff_win</option>
+        <option value="playoff_loss"> playoff_loss</option>
+        <option value="season_games">season_games</option>
+        <option value="playoff_games">playoff_games</option>
+        <option value="total_games">total_games</option>
+        <option value="total_wins">total_wins</option>
+    </select>
+    <button type="submit">Generate Charts</button>
+</form>
+
+<form action="{{ url_for('form2_result') }}" method="post" id="form2">
+    <h2>Overall Team and Coach Statistics for different attributes</h2>
+    <h2>Select any attribute</h2>
+    <label for="attribute">Attribute:</label>
+    <select id="attribute" name="attribute" required>
+
+        <option value="season_win"> season_win</option>
+        <option value="season_loss"> season_loss</option>
+        <option value="playoff_win"> playoff_win</option>
+        <option value="playoff_loss"> playoff_loss</option>
+        <option value="season_games">season_games</option>
+        <option value="playoff_games">playoff_games</option>
+        <option value="total_games">total_games</option>
+        <option value="total_wins">total_wins</option>
+    </select>
+    <button type="submit">Generate Charts</button>
+</form>
+<h2>Teams - Coaches</h2>
+{{ plot_3|safe }}
+
+{{ plot_4|safe }}
+{% endblock %}
